@@ -2,7 +2,7 @@ import express from "express";
 import dotenv from "dotenv";
 dotenv.config();
 import mongoose from "mongoose";
-import router from "./routes/ivuze.route.js";
+import router from "./routes/HIS.route.js";
 import errorhandling from "./middleware/errorhandler.js";
 import routerV from "./routes/vendor.js";
 import Hrouter from "./routes/hosiptal.routes.js";
@@ -12,9 +12,9 @@ import pages from "./pages.js";
 
 const app = express();
 
-const port = 4000;
+const port = 3000;
 const db =
-  "mongodb://localhost:27017/IVUZE_App";
+  "mongodb://localhost:27017/Healthcare";
 //Middleware
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());

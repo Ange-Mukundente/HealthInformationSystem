@@ -1,10 +1,10 @@
-import ivuzeModel from "../model/ivuze.model.js";
+import HISModel from "../model/HIS.model.js";
 import jwt from "jsonwebtoken";
 import bcrypt from "bcrypt";
 import dotenv from "dotenv";
 dotenv.config();
 
-const ivuzeController = {
+const HISController = {
   signup: async (req, res) => {
     try {
       console.log(req.body);
@@ -20,13 +20,13 @@ const ivuzeController = {
       }
 
       // Check if hospital already exists
-      const existingHospital = await ivuzeModel.findOne({ hospital_name });
+      const existingHospital = await HISModel.findOne({ hospital_name });
       if (existingHospital) {
         return res.status(400).json({ message: "Hospital already exists" });
       }
 
       // Create new hospital
-      const newHospital = await ivuzeModel.create({
+      const newHospital = await HISModel.create({
         name: hospital_name, // Use 'name' instead of 'hospital_name'
         hospital_type: req.body["hospital-type"], // Access 'hospital-type' using bracket notation
         email,
@@ -50,7 +50,7 @@ const ivuzeController = {
       console.log("Login attempt with email:", email);
 
       // Find hospital by email
-      const hospitalAvailable = await ivuzeModel.findOne({ email });
+      const hospitalAvailable = await HISModel.findOne({ email });
 
       // Debugging: Log the hospitalAvailable object to inspect
       console.log("Hospital found:", hospitalAvailable);
@@ -95,7 +95,7 @@ const ivuzeController = {
 
   update: async (req, res) => {
     try {
-      const updatedUser = await ivuzeModel.findOneAndUpdate(
+      const updatedUser = await HISModel.findOneAndUpdate(
         { _id: req.query.id },
         req.body,
         { new: true }
@@ -109,7 +109,7 @@ const ivuzeController = {
 
   list: async (req, res) => {
     try {
-      const users = await ivuzeModel.find({});
+      const users = await HISModel.find({});
       res.status(200).json({ users });
     } catch (error) {
       console.error("List error:", error);
@@ -120,7 +120,7 @@ const ivuzeController = {
   findByFullName: async (req, res) => {
     try {
       const { name } = req.query;
-      const foundUser = await ivuzeModel.findOne({ name });
+      const foundUser = await HISModel.findOne({ name });
       if (!foundUser) {
         return res.status(404).json({ message: "User not found" });
       }
@@ -134,7 +134,7 @@ const ivuzeController = {
   findById: async (req, res) => {
     try {
       const { id } = req.query;
-      const foundUser = await ivuzeModel.findById(id);
+      const foundUser = await HISModel.findById(id);
       if (!foundUser) {
         return res.status(404).json({ message: "User not found" });
       }
@@ -148,7 +148,7 @@ const ivuzeController = {
   findByNationalId: async (req, res) => {
     try {
       const { nationalId } = req.body;
-      const foundUser = await ivuzeModel.findOne({ nationalId });
+      const foundUser = await HISModel.findOne({ nationalId });
       if (!foundUser) {
         return res.status(404).json({ message: "User not found" });
       }
@@ -161,7 +161,7 @@ const ivuzeController = {
 
   remove: async (req, res) => {
     try {
-      const deletedUser = await ivuzeModel.findByIdAndDelete(req.query.id);
+      const deletedUser = await HISModel.findByIdAndDelete(req.query.id);
       if (!deletedUser) {
         return res.status(404).json({ message: "User not found" });
       }
@@ -173,4 +173,4 @@ const ivuzeController = {
   },
 };
 
-export default ivuzeController;
+export default HISController;

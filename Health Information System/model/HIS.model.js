@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 import bcrypt from "bcrypt";
 
-const ivuzeSchema = new mongoose.Schema({
+const HISSchema = new mongoose.Schema({
     name: {
         type: String,
         required: true
@@ -26,12 +26,12 @@ const ivuzeSchema = new mongoose.Schema({
 }, { timestamps: true });
 
 // Pre-save hook to hash the password before saving
-ivuzeSchema.pre('save', async function(next) {
+HISSchema.pre('save', async function(next) {
     const salt = await bcrypt.genSalt();
     this.password = await bcrypt.hash(this.password, salt);
     next();
 });
 
-const ivuzeModel = mongoose.model("Users", ivuzeSchema);
+const HISModel = mongoose.model("Users", HISSchema);
 
-export default ivuzeModel;
+export default HISModel;
