@@ -1,9 +1,9 @@
-import ivuzeController from "../controllers/ivuze.controller.js";
-import authonticationhospital from "../middleware/authonticationhospital.js";
+import HISController from "../controllers/HIS.controller.js";
+import authenticateHospital from "../middleware/authonticationhospital.js";
 import  Router  from "express";
 const router = Router();
 
-router.post("/register", ivuzeController.signup);
- router.post("/login",ivuzeController.loginHospital); //
+router.post("/register", HISController.signup);
+ router.post("/login",HISController.loginHospital); //
  
 export default router;
