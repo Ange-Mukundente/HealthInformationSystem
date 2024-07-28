@@ -26,9 +26,9 @@ app.get('/doctor',(req,res)=>{
 app.get('/',(req,res)=>{
     res.sendFile(path.join(__dirname, 'components', 'index.html'));
 })
-// app.get('/dashboard',(req,res)=>{
-//     res.sendFile(path.join(__dirname, 'components', 'dashboard.html'));
-// })
+app.get('/dashboard',(req,res)=>{
+    res.sendFile(path.join(__dirname, 'components', 'dashboard.html'));
+})
 app.get('/service',(req,res)=>{
     res.sendFile(path.join(__dirname, 'components','service.html'));
 })
