@@ -5,7 +5,7 @@ import mongoose from "mongoose";
 import router from "./routes/HIS.route.js";
 import errorhandling from "./middleware/errorhandler.js";
 import routerV from "./routes/vendor.js";
-// import Hrouter from "./routes/hospital.routes.js"; // Corrected the spelling
+import Hrouter from "./routes/hosiptal.routes.js"; // Corrected the spelling
 import cookieParser from "cookie-parser";
 import cors from "cors";
 import pages from "./pages.js";
@@ -24,10 +24,10 @@ app.set("view engine", "ejs");
 app.set("views", "./views");
 app.use(express.static("components"));
 
-// app.use(pages);
-// app.use(router);
-// app.use(routerV);
-// app.use(Hrouter);
+app.use(pages);
+app.use(router);
+app.use(routerV);
+app.use(Hrouter);
 
 // Connect to MongoDB
 mongoose.connect(db, {
